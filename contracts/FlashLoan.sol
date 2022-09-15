@@ -24,9 +24,9 @@ contract FlashLoan is FlashLoanSimpleReceiverBase {
     function executeOperation(address _asset, uint256 _amount, uint256 _premium,address _initiator,bytes calldata _params) external returns(bool) {
         // this is the place where we write all our operations as to what
         // do we want to do with the loan money
-        uint256 amountOwing = amount.add(premium);
-        IERC20(asset).approve(address(POOL), amountOwing);
-        emit Log(asset, amountOwing);
+        uint256 amountOwing = _amount.add(_premium);
+        IERC20(_asset).approve(address(POOL), amountOwing);
+        emit Log(_asset, amountOwing);
         return true;
     }
 
